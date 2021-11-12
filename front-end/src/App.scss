@@ -1,14 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;500;600&display=swap');
+@import '_settings.scss';
 
-$column-width: 300px;
-$border-radius-column: 5px;
-$gap: 10px;
-$height-footer-header-column: 30px;
-
-$appbar-bg-color: #009966;
 $board-bg-color: #339933;
-$task-bg-color: #ffffff;
-$column-bg-color: #ebecf0;
 
 body {
     margin: 0;
@@ -18,7 +10,9 @@ body {
 }
 div,
 p,
-button {
+button,
+input,
+label {
     margin: 0;
     padding: 0;
     outline: none;
@@ -30,113 +24,4 @@ button {
     display: grid;
     grid-template-rows: 40px 50px 1fr;
     background-color: $board-bg-color;
-
-    .navbar {
-        padding: 0 $gap;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &.app {
-            background-color: $appbar-bg-color;
-            font-size: 1.2rem;
-        }
-    }
-}
-.board {
-    display: flex;
-    overflow-x: auto;
-    align-items: flex-start;
-    margin-bottom: 5px;
-    margin-left: $gap;
-    margin-right: $gap;
-    &::-webkit-scrollbar-track {
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        background-color: transparent;
-        margin-left: 5px;
-    }
-    &::-webkit-scrollbar {
-        height: 7px;
-        background-color: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        background-color: darken($column-bg-color, 20);
-        transition: background-color 0.3 linear;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: darken($column-bg-color, 30);
-    }
-}
-.column {
-    width: $column-width;
-    max-height: calc(100% - #{2 * $gap});
-    overflow-y: hidden;
-    flex: 0 0 auto;
-    background-color: $column-bg-color;
-    border-radius: $border-radius-column;
-    user-select: none;
-
-    &:not(:last-child) {
-        margin-right: $gap;
-    }
-
-    .header,
-    .footer {
-        background-color: transparent;
-        font-size: 1.1rem;
-        font-weight: 600;
-        line-height: $height-footer-header-column;
-        padding: $gap/2 $gap;
-        word-spacing: 1px;
-        letter-spacing: 2px;
-    }
-
-    .tasks {
-        max-height: calc(100vh - #{210px});
-        overflow-y: auto;
-        padding: $gap/2 $gap/2 $gap/2 $gap;
-        margin-right: $gap/2;
-        &::-webkit-scrollbar-track {
-            -webkit-border-radius: 10px;
-            border-radius: 10px;
-            background-color: transparent;
-            margin-left: 5px;
-        }
-        &::-webkit-scrollbar {
-            width: 6px;
-            background-color: transparent;
-        }
-        &::-webkit-scrollbar-thumb {
-            -webkit-border-radius: 10px;
-            border-radius: 10px;
-            background-color: darken($column-bg-color, 20);
-            transition: background-color 0.3 linear;
-        }
-        &::-webkit-scrollbar-thumb:hover {
-            background-color: darken($column-bg-color, 30);
-        }
-        .task {
-            font-size: 0.8rem;
-            word-spacing: 1px;
-            letter-spacing: 0.5px;
-            padding: $gap/2 $gap;
-            background-color: $task-bg-color;
-            box-shadow: 0px 0px 2px 0px gray;
-            border-radius: $border-radius-column;
-            cursor: pointer;
-            &:not(:last-child) {
-                margin-bottom: $gap;
-            }
-            img {
-                display: block;
-                width: calc(100% + 2 * #{$gap});
-                margin: -$gap/2 (-$gap) 0 (-$gap);
-                border-top-left-radius: $border-radius-column;
-                border-top-right-radius: $border-radius-column;
-            }
-        }
-    }
 }

@@ -1,0 +1,43 @@
+@import '_settings.scss';
+
+.footer {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 1;
+        padding-left: $gap;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($column-bg-color, 5);
+        }
+
+        p {
+            margin-left: $gap * 3 / 5;
+        }
+        svg {
+            transform: translateY(-1px);
+        }
+    }
+    .action {
+        cursor: pointer;
+        width: $height-footer-header-column;
+        height: $height-footer-header-column;
+        line-height: 0;
+        text-align: center;
+        svg {
+            transform: translateY(40%);
+        }
+
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: darken($column-bg-color, 5);
+        }
+    }
+}

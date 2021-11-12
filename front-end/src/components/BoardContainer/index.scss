@@ -1,0 +1,43 @@
+@import '_settings.scss';
+
+.board-container {
+    display: flex;
+    overflow-x: auto;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    margin-left: $gap;
+    margin-right: $gap;
+    &::-webkit-scrollbar-track {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background-color: transparent;
+        margin-left: 5px;
+    }
+    &::-webkit-scrollbar {
+        height: 7px;
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background-color: darken($column-bg-color, 20);
+        transition: background-color 0.3 linear;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: darken($column-bg-color, 30);
+    }
+}
+.drop-preview {
+    background-color: rgba(150, 150, 200, 0.1);
+    margin: 10px 20px 5px 5px;
+}
+.on-drag-column {
+    transition: transform 0.2s ease;
+    transform: rotateZ(2deg);
+    max-height: 100vh;
+    cursor: grab !important;
+}
+.on-drop-column {
+    transition: transform 0.2s ease;
+    transform: rotateZ(0deg);
+}

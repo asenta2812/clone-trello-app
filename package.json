@@ -1,0 +1,21 @@
+{
+  "name": "clone-trello-app",
+  "version": "1.0.0",
+  "description": "Clone Trello App",
+  "scripts": {
+    "start:backend": "yarn --cwd back-end dev",
+    "start:frontend": "wait-on http://localhost:8000/api/v1 && yarn --cwd front-end start",
+    "start": "cross-env FORCE_COLOR=1 npm-run-all -l -p start:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-personal:asenta2812/clone-trello-app.git"
+  },
+  "author": "asenta2812",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "4.1.5",
+    "wait-on": "5.2.1",
+    "cross-env": "7.0.3"
+  }
+}
