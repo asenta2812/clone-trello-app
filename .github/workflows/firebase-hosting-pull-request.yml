@@ -12,6 +12,7 @@ jobs:
             - run: cd front-end && npm install && npm run build
             - uses: FirebaseExtended/action-hosting-deploy@v0
               with:
+                  entrypoint: /front-end
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
                   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLONE_TRELLO_APP }}'
                   projectId: clone-trello-app
