@@ -3,7 +3,8 @@ import './index.scss'
 function BoardBar() {
   return (
     <div className="navbar-board">
-            middleware
+      middleware
+      <p>test nef</p>
     </div>
   )
 }
