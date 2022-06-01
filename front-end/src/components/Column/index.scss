@@ -44,6 +44,11 @@
                 cursor: text;
             }
         }
+        p {
+            width: 100%;
+            padding: $gap/2 $gap;
+            margin: 0;
+        }
     }
 }
 

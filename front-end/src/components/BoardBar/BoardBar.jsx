@@ -1,12 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './index.scss'
-function BoardBar() {
+function BoardBar({ boardSelected }) {
   return (
     <div className="navbar-board">
-      middleware
-      <p>test nef</p>
+      {boardSelected?.name}
     </div>
   )
 }
-
-export default BoardBar
+const mapStateToProps = ({ board }) => ({
+  boardSelected: board.boardSelected
+})
+export default connect(mapStateToProps, null)(BoardBar)

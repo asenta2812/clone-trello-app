@@ -1,5 +1,8 @@
 const express = require('express');
 const authRoute = require('./auth.route');
+const boardRoute = require('./board.route');
+const columnRoute = require('./column.route');
+const taskRoute = require('./task.route');
 const userRoute = require('./user.route');
 const roleRoute = require('./role.route');
 const docsRoute = require('./docs.route');
@@ -23,6 +26,18 @@ const defaultRoutes = [
   {
     path: '/roles',
     route: roleRoute,
+  },
+  {
+    path: '/boards',
+    route: boardRoute,
+  },
+  {
+    path: '/columns',
+    route: columnRoute,
+  },
+  {
+    path: '/tasks',
+    route: taskRoute,
   },
 ];
 

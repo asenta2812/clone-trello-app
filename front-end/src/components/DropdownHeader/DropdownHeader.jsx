@@ -42,7 +42,7 @@ function DropdownHeader({ columnId, deleteColumn, openAddTask }) {
       <button className="dropdown-icon" onClick={doToggle}>
         <AiOutlineSmallDash size={16} />
       </button>
-      {isOpen && <div className="dropdown-header-wrapper" ref={refDropdown}>
+      {isOpen && <div className="dropdown-header-wrapper no-wrap" ref={refDropdown}>
         <div className="title">
           Thao tác
           <AiOutlineClose className="close" size={14} onClick={doClose} />

@@ -14,7 +14,7 @@ function Task({ data }) {
 }
 Task.propTypes = {
   data: PropTypes.shape({
-    taskId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string
   })

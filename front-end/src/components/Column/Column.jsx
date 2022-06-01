@@ -12,47 +12,50 @@ import './index.scss'
 
 function Column({ data, onDrop, updateTitleColumn, columnOpenAddTask }) {
   const [taskOrdered, setTaskOrdered] = useState([])
+  const [openInputTitle, setOpenInputTitle] = useState(false)
   useEffect(() => {
-    const taskOrdered = mapOrder(data.tasks, data.taskOrder, 'taskId')
+    const taskOrdered = mapOrder(data.tasks, data.taskOrder, '_id')
     setTaskOrdered([...taskOrdered])
   }, [data.tasks, data.taskOrder])
 
 
   const renderTasks = useMemo(() => {
-    return taskOrdered.map(task => <Draggable key={task.taskId}><Task data={task} /></Draggable>)
+    return taskOrdered.map(task => <Draggable key={task._id}><Task data={task} /></Draggable>)
   }, [taskOrdered])
 
   const handleDrop = useCallback((dropResult) => {
     if (handleDrop && typeof handleDrop === 'function') {
-      onDrop(dropResult, data.columnId)
+      onDrop(dropResult, data._id)
     }
-  }, [data.columnId, onDrop])
+  }, [data._id, onDrop])
 
-  const handleInputTitleClick = (e) => {
-    e.target.focus()
-    e.target.select()
-  }
   const handleInputTitleSubmit = (e) => {
-    updateTitleColumn({ columnId: data.columnId, title: e.target.value })
+    e.preventDefault()
+    e.stopPropagation()
+    updateTitleColumn({ _id: data._id, name: e.target.value })
+    setOpenInputTitle(false)
   }
   return (
     <div className="column">
       <div className="header column-drag-handle">
-        <input type="text"
-          onClick={handleInputTitleClick}
+        {openInputTitle && <input type="text"
+          autoFocus
+          onFocus={e => e.target.select()}
           spellCheck="false"
-          defaultValue={data.title}
+          defaultValue={data.name}
           onKeyDown={e => (e.key === 'Enter') && e.target.blur()}
           onBlur={handleInputTitleSubmit}
-        />
-        <DropdownHeader columnId={data.columnId} />
+          className="no-wrap"
+        />}
+        {!openInputTitle && <p onClick={() => setOpenInputTitle(true)}> {data.name}</p>}
+        <DropdownHeader columnId={data._id} />
       </div>
       <div className="tasks">
-        {columnOpenAddTask && columnOpenAddTask.columnId === data.columnId && columnOpenAddTask.isOnTop && <NewTask columnId={data.columnId} />}
+        {columnOpenAddTask && columnOpenAddTask.columnId === data._id && columnOpenAddTask.isOnTop && <NewTask columnId={data._id} />}
         <Container
           groupName="col"
           onDrop={handleDrop}
-          getChildPayload={(index) => ({ ...taskOrdered[index], columnId: data.columnId })}
+          getChildPayload={(index) => ({ ...taskOrdered[index], columnId: data._id })}
           dragClass="on-drag-task"
           dropClass="on-drop-task"
           dropPlaceholder={{
@@ -63,10 +66,10 @@ function Column({ data, onDrop, updateTitleColumn, columnOpenAddTask }) {
         >
           {renderTasks}
         </Container>
-        {columnOpenAddTask && columnOpenAddTask.columnId === data.columnId && !columnOpenAddTask.isOnTop && <NewTask columnId={data.columnId} />}
+        {columnOpenAddTask && columnOpenAddTask.columnId === data._id && !columnOpenAddTask.isOnTop && <NewTask columnId={data._id} />}
       </div>
 
-      {!(columnOpenAddTask && columnOpenAddTask.columnId === data.columnId) && <FooterColumn columnId={data.columnId} />}
+      {!(columnOpenAddTask && columnOpenAddTask.columnId === data._id) && <FooterColumn columnId={data._id} />}
     </div>
   )
 }
@@ -74,9 +77,9 @@ function Column({ data, onDrop, updateTitleColumn, columnOpenAddTask }) {
 Column.propTypes = {
   data: PropTypes.shape({
     tasks: PropTypes.array,
-    columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     taskOrder: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-    title: PropTypes.string
+    name: PropTypes.string
   })
 }
 

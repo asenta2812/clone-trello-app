@@ -8,7 +8,7 @@ const boardSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    columnOrder: [{ type: String }]
+    columnOrder: [{ type: String, default: [] }],
   },
   {
     timestamps: true,

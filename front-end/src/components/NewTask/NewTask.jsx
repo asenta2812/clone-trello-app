@@ -16,8 +16,7 @@ function NewTask({ columnId, openAddTask, addTask }) {
   const handleAddTask = () => {
     const value = refInput.current.value
     if (!value) return
-    const taskId = Math.random() * 10000
-    addTask({ columnId, task: { taskId, title: value } })
+    addTask({ columnId, title: value })
     handleOffAddTask()
   }
   useEffect(() => {
